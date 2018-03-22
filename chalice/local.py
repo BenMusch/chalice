@@ -494,6 +494,9 @@ class LocalGateway(object):
         # CORS configuration, so if any view has a CORS Config we can use
         # that config since they will all be the same.
         cors_config = route_dict[route_methods[0]].cors
+        if cors_config is None:
+            return {}
+        
         cors_headers = cors_config.get_access_control_headers()
 
         # We need to add OPTIONS since it is not a part of the CORSConfig
